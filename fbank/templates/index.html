@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Balance{% endblock %}
+{% block content %}
+
+<div class="userinfo">
+    <div class="block">
+        <label><b>Balance: </b></label> {{ person_fcoins if person_fcoins > 0 else 0 }} fcoins<br />
+    </div>
+
+    <div class="block">
+        <label><b>Username:</b></label> {{person.username}} <br>
+    </div>
+
+    <center>
+        <b>Your profile:</b>
+        <form method="POST" name="profileform">
+            <textarea name="profile_update" rows="20" cols="80">{{ person.profile }}</textarea>
+            <br>
+            <input type="submit" name="profile_submit" value="Save" />
+        </form>
+    </center>
+</div>
+{% endblock %}
+{% block postscript %}
+{% endblock %}

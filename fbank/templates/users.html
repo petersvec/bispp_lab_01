@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<form name="profileform" method="GET">
+<nobr><b>User:</b>
+<input type="text" name="user" value="{{ req_user }}" size=10></nobr>
+<br><br>
+<input type="submit" value="View">
+</form>
+{% if user %}
+<div id="profilename"></div>
+<div id="profileheader"></div>
+
+<div id="profile">
+  <b>Profile:</b><br>
+  {{ profile }}
+</div>
+
+<span id="fcoins" class="{{ user_fcoins }}"></span>
+
+<script type="text/javascript">
+  var total = eval(document.getElementById('fcoins').className);
+
+  function showFCoins(fcoins) {
+    document.getElementById("profilename").innerHTML = "<b>Username: </b>" + "{{user.username}}";
+
+    document.getElementById("profileheader").innerHTML = "<b>Balance: </b>" + fcoins + " fcoins";
+    if (fcoins < total) {
+      setTimeout("showFCoins(" + (fcoins + 1) + ")", 100);
+    }
+  }
+  if (total > 0) showFCoins(0);
+</script>
+
+{% elif warning %}
+<p class="warning">{{ warning }}</p>
+{% endif %}
+{% endblock %}
+{% block postscript %}
+{% if transfers %}
+<br>
+<table class="log" align="center">
+<tr><th>Time</th>
+    <th>Sender</th>
+    <th>Recipient</th>
+    <th>Amount</th></tr>
+{% for transfer in transfers %}
+<tr><td align="center">{{ transfer.time }}</td>
+    <td align="center">{{ transfer.sender }}</td>
+    <td align="center">{{ transfer.recipient }}</td>
+    <td align="center">{{ transfer.amount }}</td></tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

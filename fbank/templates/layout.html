@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/fbank/media/fbank.css">
+        <title>
+          {% block title %}{% endblock %} - FEI Bank
+        </title>
+    </head>
+    <body>
+        {% if g.user and g.user.person %}
+        {% set person = g.user.person %}
+        {% set person_fcoins = g.user.fcoins %}
+        <div id="header">
+          <div><a href="{{ url_for('logout') }}">Log out {{ person.username }}</a></div>
+        </div>
+        {% endif %}
+      <h1><a href="{{ url_for('index') }}">FEI Bank</a></h1>
+      <h2>Special place for fcoin transfers!</h2>
+      {% block main %}
+      <div id="main" class="centerpiece">
+        <table>
+          <tr><td>
+             <p>
+               {% for (name, page) in {"Home": "index", "Users": "users", "Transfer": "transfer"}.iteritems() %}
+                 {% if page == request.endpoint %}
+                   <b>{{ name }}</b>
+                 {% else %}
+                   <a href="{{ url_for(page) }}">{{ name }}</a>
+                 {% endif %}
+                 {% if name != "Transfer" %} | {% endif %}
+               {% endfor %}
+             </p>
+          </td></tr>
+          <tr><td class="main">
+            {% block content %}{% endblock %}
+          </td></tr>
+        </table>
+      </div>
+      {% block postscript %}{% endblock %}
+      {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Transfer{% endblock %}
+{% block content %}
+<form method="POST" name="transferform">
+    <div class="block">
+        <label><b>Balance: </b></label><span id="myFCoins"></span> fcoins
+    </div>
+
+    <div class="block">
+        <label><b>FCoins:</b></label>
+        <input name="fcoins" type="text" value="{{ request.form.get('fcoins', '') }}" size=5><br>
+    </div>
+
+    <div class="block">
+        <label><b>Recipient: </b></label> 
+        <input name="recipient" type="text" value="{{ request.form.get('recipient', '') }}" size=5>
+    </div>
+    <br>
+    <input type="submit" name="submission" value="Send">
+</form>
+{% if warning %}
+<span class="warning">{{ warning }}</span>
+{% endif %}
+<script type="text/javascript" src="{{ url_for('fcoinsjs') }}"></script>
+{% endblock %}
