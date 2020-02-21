@@ -1,5 +1,5 @@
 # bispp_lab_01
-Bezpečnosť  informačných systémov z pohľadu praxe - Zadanie 1
+Bezpečnosť  informačných systémov z pohľadu praxe - zadanie z bloku Exploitácia
 
 ### Kompilácia a spustenie
 Pre skompilovanie treba zadať príkaz:
@@ -20,7 +20,7 @@ alebo
 ./fbankld  fbank-nxstack.conf
 ```
 
-Server bude štandardne bežať na localhoste, na porte 8080 (možno zmeniť v konfiguračnom súbore). Server možno spustiť s dvoma nastaveniami. Pomocou konfiguračného súboru *fbank-exstack.conf* bude proces servera bežať s vypnutým NX flagom, t.j. zásobník ma nastavený X flag a dáta v ňom môžu byť spustiteľné. Konfiguračný súbor *fbank-exstack.conf* naopak spúšťa server so zapnutým NX flagom a dáta na zásobníku už nie je možné vykonávať.
+Server bude štandardne bežať na localhoste, na porte 8080 (možno zmeniť v konfiguračnom súbore). Server možno spustiť s dvoma nastaveniami. Pomocou konfiguračného súboru *fbank-exstack.conf* bude proces servera bežať s vypnutým NX flagom, t.j. zásobník ma nastavený X flag a dáta v ňom môžu byť spustiteľné. Konfiguračný súbor *fbank-nxstack.conf* naopak spúšťa server so zapnutým NX flagom a dáta na zásobníku už nie je možné vykonávať.
 
 ### Architektúra servera
 
